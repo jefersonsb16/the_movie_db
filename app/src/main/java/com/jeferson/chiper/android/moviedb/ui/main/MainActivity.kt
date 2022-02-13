@@ -1,7 +1,8 @@
-package com.jeferson.chiper.android.moviedb
+package com.jeferson.chiper.android.moviedb.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jeferson.chiper.android.moviedb.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
