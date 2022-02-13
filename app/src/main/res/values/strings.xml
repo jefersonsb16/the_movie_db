@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MovieDB</string>
+
+    <string name="ic_tmdb">Icono TMDB</string>
+    <string name="movie_image">Imagen de la película</string>
+    <string name="message_not_movie">No se encontró una película para mostrar.</string>
+    <string name="title_detail">Detalle</string>
+    <string name="text_overview">Información General</string>
+    <string name="text_release_date">Fecha de lanzamiento</string>
+    <string name="error_get_movies">Error obteniendo películas</string>
+    <string name="error_get_images_movies">Error obteniendo las imágenes de la película</string>
+    <string name="desc_image_movie">Imagen de la película</string>
+    <string name="text_gallery">Galería</string>
+    <string name="text_info_not_available">Información no disponible</string>
+    <string name="not_results">No hay resultados para mostrar</string>
 </resources>
