@@ -13,6 +13,7 @@
     <string name="text_gallery">Galería</string>
     <string name="text_info_not_available">Información no disponible</string>
     <string name="not_results">No hay resultados para mostrar</string>
+    <string name="text_retry">Reintentar</string>
 
     <!-- error's messages -->
     <string name="text_not_allowed_error">Método no permitido</string>

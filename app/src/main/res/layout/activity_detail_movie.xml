@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+        <variable
+            name="view_model"
+            type="com.jeferson.chiper.android.moviedb.ui.detail_movie.DetailMovieViewModel" />
+
+        <variable
+            name="movieDataTitle"
+            type="String" />
+
+        <variable
+            name="movieDataOverview"
+            type="String" />
+
+        <variable
+            name="movieDataReleaseDate"
+            type="String" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.detail_movie.DetailMovieActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarDetailMovie"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_image_toolbar_detail"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <ImageView
+                    android:id="@+id/imageDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/movie_image"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    tools:src="@mipmap/ic_launcher_round" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/medium_margin"
+                    android:text="@{movieDataTitle}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/big_text_size"
+                    android:textStyle="bold"
+                    app:layout_collapseMode="parallax"
+                    tools:text="Mortal Kombat" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:theme="@style/ToolbarDetailTheme" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/normal_margin">
+
+                <TextView
+                    android:id="@+id/tvTitleReleaseDateDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/medium_margin"
+                    android:text="@string/text_release_date"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvReleaseDateDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/medium_margin"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:textSize="@dimen/medium_text_size_detail"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitleReleaseDateDetailMovie"
+                    app:loadTextOverview="@{movieDataReleaseDate}"
+                    tools:text="2021-04-07" />
+
+                <TextView
+                    android:id="@+id/tvOverviewDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/medium_margin"
+                    android:text="@string/text_overview"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintTop_toBottomOf="@+id/tvReleaseDateDetailMovie" />
+
+                <TextView
+                    android:id="@+id/tvOverview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/medium_margin"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:text="@{movieDataOverview}"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOverviewDetailMovie"
+                    tools:text="Un boxeador fracasado descubre un secreto familiar que lo lleva a un torneo místico llamado Mortal Kombat donde se encuentra con un grupo de guerreros que luchan hasta la muerte para salvar los reinos del malvado hechicero Shang Tsung." />
+
+                <TextView
+                    android:id="@+id/tvGalleryImagesDetailMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/medium_margin"
+                    android:text="@string/text_gallery"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{view_model.sizeImagesList == 0 &amp;&amp; !view_model.isLoading ? view.VISIBLE : view.INVISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGalleryImagesDetailMovie">
+
+                    <TextView
+                        android:id="@+id/tvInfoNotAvailable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/medium_margin"
+                        android:layout_marginVertical="@dimen/small_margin"
+                        android:text="@string/text_info_not_available"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvRetryDetailMovie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_margin"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/small_padding"
+                        android:text="@string/text_retry"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- Recycler list images movie -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvImagesMovieList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGalleryImagesDetailMovie"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_images_movie" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/loadingImagesMovie"
+            android:layout_width="@dimen/size_loader"
+            android:layout_height="@dimen/size_loader"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
