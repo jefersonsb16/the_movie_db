@@ -14,6 +14,8 @@
     <string name="text_info_not_available">Información no disponible</string>
     <string name="not_results">No hay resultados para mostrar</string>
     <string name="text_retry">Reintentar</string>
+    <string name="action_most_popular">Más popular</string>
+    <string name="action_local">Local</string>
 
     <!-- error's messages -->
     <string name="text_not_allowed_error">Método no permitido</string>

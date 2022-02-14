@@ -6,4 +6,7 @@ object Constants {
     const val MOVIE_RELEASE_DATE = "MOVIE_RELEASE_DATE"
     const val MOVIE_IMAGE = "MOVIE_IMAGE"
     const val MOVIE_OVERVIEW = "MOVIE_OVERVIEW"
+
+    const val TYPE_API = "TYPE_API"
+    const val TYPE_LOCAL = "TYPE_LOCAL"
 }

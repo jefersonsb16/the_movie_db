@@ -7,5 +7,5 @@ class GetRemoteMoviesUseCase(
     private val popularMoviesRepository: PopularMoviesRepository
 ) {
     suspend fun invoke(page: Int): List<MovieDomain> =
-        popularMoviesRepository.getPopularMovies(page)
+        popularMoviesRepository.getRemotePopularMovies(page)
 }
