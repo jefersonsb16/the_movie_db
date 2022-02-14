@@ -2,6 +2,7 @@ package com.jeferson.chiper.android.moviedb.di
 
 import com.jeferson.chiper.android.moviedb.data.repository.ImagesMovieByIdRepository
 import com.jeferson.chiper.android.moviedb.data.repository.PopularMoviesRepository
+import com.jeferson.chiper.android.moviedb.data.source.LocalPopularMoviesDataSource
 import com.jeferson.chiper.android.moviedb.data.source.RemoteImagesMovieByIdDataSource
 import com.jeferson.chiper.android.moviedb.data.source.RemotePopularMoviesDataSource
 import dagger.Module
@@ -17,8 +18,9 @@ class DataModule {
     @Provides
     fun popularMoviesRepositoryProvider(
         remotePopularMoviesDataSource: RemotePopularMoviesDataSource,
+        localPopularMoviesDataSource: LocalPopularMoviesDataSource,
         @Named("apiKey") apiKey: String
-    ) = PopularMoviesRepository(remotePopularMoviesDataSource, apiKey)
+    ) = PopularMoviesRepository(remotePopularMoviesDataSource, localPopularMoviesDataSource, apiKey)
 
     @Provides
     fun imagesMovieByIdRepositoryProvider(

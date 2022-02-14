@@ -1,7 +1,11 @@
 package com.jeferson.chiper.android.moviedb.di
 
+import android.app.Application
+import com.jeferson.chiper.android.moviedb.data.source.LocalPopularMoviesDataSource
 import com.jeferson.chiper.android.moviedb.data.source.RemoteImagesMovieByIdDataSource
 import com.jeferson.chiper.android.moviedb.data.source.RemotePopularMoviesDataSource
+import com.jeferson.chiper.android.moviedb.framework.database.PopularMoviesRoomDataSource
+import com.jeferson.chiper.android.moviedb.framework.database.TMDBAppDatabase
 import com.jeferson.chiper.android.moviedb.framework.server.ApiConstants.API_KEY_VALUE
 import com.jeferson.chiper.android.moviedb.framework.server.ApiConstants.BASE_API_URL
 import com.jeferson.chiper.android.moviedb.framework.server.ImagesMovieByIdRetrofitDataSource
@@ -28,6 +32,14 @@ class AppModule {
     @Singleton
     @Named("apiKey")
     fun apiKeyProvider(): String = API_KEY_VALUE
+
+    @Provides
+    @Singleton
+    fun databaseProvider(app: Application): TMDBAppDatabase = TMDBAppDatabase.getDatabase(app)
+
+    @Provides
+    fun localPopularMoviesDataSourceProvider(db: TMDBAppDatabase): LocalPopularMoviesDataSource =
+        PopularMoviesRoomDataSource(db)
 
     @Provides
     fun popularMoviesRequestProvider(
