@@ -5,7 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.jeferson.chiper.android.moviedb.domain.MovieDomain
 import com.jeferson.chiper.android.moviedb.ui.common.Event
 import com.jeferson.chiper.android.moviedb.ui.common.ScopedViewModel
+import com.jeferson.chiper.android.moviedb.usecases.GetLocalMoviesUseCase
 import com.jeferson.chiper.android.moviedb.usecases.GetRemoteMoviesUseCase
+import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_API
+import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_LOCAL
 import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory.Companion.GENERIC_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,8 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
-    private val getPopularMoviesUseCase: GetRemoteMoviesUseCase
+    private val getPopularMoviesUseCase: GetRemoteMoviesUseCase,
+    private val getLocalMoviesUseCase: GetLocalMoviesUseCase
 ) : ScopedViewModel() {
+
+    private var typeGetData = TYPE_API
 
     private val _events = MutableLiveData<Event<MovieListNavigation>>()
     val events: LiveData<Event<MovieListNavigation>> get() = _events
@@ -68,16 +74,42 @@ class PopularMoviesViewModel @Inject constructor(
         }
     }
 
+    fun setValueTypeGetData(value: String) {
+        typeGetData = value
+
+        if (typeGetData == TYPE_API) {
+            currentPage = 0
+            _popularMovieList.clear()
+        }
+    }
+
+    fun onGetAllLocalMovies() {
+        if (typeGetData != TYPE_LOCAL) {
+            return
+        }
+
+        launch {
+            showLoading()
+            val resultList = getLocalMoviesUseCase.invoke()
+            _sizeMoviesList.value = resultList.size
+            hideLoading()
+
+            if (typeGetData == TYPE_LOCAL) {
+                _events.value = Event(MovieListNavigation.ShowMovieList(resultList))
+            }
+        }
+    }
+
     fun onLoadMoreMovies(
         visibleItemCount: Int,
         firstVisibleItemPosition: Int,
         totalItemCount: Int
     ) {
-        if (isLoading.value!! || isLastPage || !isInFooter(
+        if ((isLoading.value!! || isLastPage || !isInFooter(
                 visibleItemCount,
                 firstVisibleItemPosition,
                 totalItemCount
-            )
+            )) || typeGetData != TYPE_API
         ) {
             return
         }
@@ -87,6 +119,7 @@ class PopularMoviesViewModel @Inject constructor(
     }
 
     fun onRetryGetPopularMovies() {
+        typeGetData = TYPE_API
         _popularMovieList.clear()
         currentPage = 0
         isLastPage = false

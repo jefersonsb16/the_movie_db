@@ -2,6 +2,8 @@ package com.jeferson.chiper.android.moviedb.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,6 +21,8 @@ import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_IMAGE
 import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_OVERVIEW
 import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_RELEASE_DATE
 import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_TITLE
+import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_API
+import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_LOCAL
 import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -102,5 +106,26 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
         goDetail.putExtra(MOVIE_IMAGE, movie.backdrop_path)
         goDetail.putExtra(MOVIE_OVERVIEW, movie.overview)
         startActivity(goDetail)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_filters_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.actionMostPopular -> {
+                mainViewModel.setValueTypeGetData(TYPE_API)
+                mainViewModel.onGetPopularMovies()
+                true
+            }
+            R.id.actionLocal -> {
+                mainViewModel.setValueTypeGetData(TYPE_LOCAL)
+                mainViewModel.onGetAllLocalMovies()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

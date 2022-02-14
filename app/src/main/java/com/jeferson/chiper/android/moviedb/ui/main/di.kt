@@ -1,6 +1,7 @@
 package com.jeferson.chiper.android.moviedb.ui.main
 
 import com.jeferson.chiper.android.moviedb.data.repository.PopularMoviesRepository
+import com.jeferson.chiper.android.moviedb.usecases.GetLocalMoviesUseCase
 import com.jeferson.chiper.android.moviedb.usecases.GetRemoteMoviesUseCase
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,10 @@ class MainActivityModule {
     fun getPopularMoviesUseCaseProvider(
         popularMoviesRepository: PopularMoviesRepository
     ) = GetRemoteMoviesUseCase(popularMoviesRepository)
+
+    @Provides
+    @ViewModelScoped
+    fun getLocalMoviesUseCaseProvider(
+        popularMoviesRepository: PopularMoviesRepository
+    ) = GetLocalMoviesUseCase(popularMoviesRepository)
 }
