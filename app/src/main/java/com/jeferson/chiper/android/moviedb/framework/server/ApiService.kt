@@ -13,7 +13,7 @@ interface PopularMoviesService {
 
     @GET(END_POINT_POPULAR_MOVIES)
     suspend fun getPopularMovies(
-        @Query(API_KEY) apiKey: String = API_KEY_VALUE,
+        @Query(API_KEY) apiKey: String,
         @Query(PAGE_KEY) page: Int,
         @Query(LANGUAGE_KEY) language: String = LANGUAGE_VALUE_ES
     ): MovieServerResult
