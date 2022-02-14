@@ -25,3 +25,29 @@ data class MovieServer(
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("vote_count") val voteCount: Int
 )
+
+data class ImagesMovieResponseServer(
+    val backdrops: List<ImageMovieServer>,
+    val id: Int,
+    val posters: List<PosterServer>
+)
+
+data class ImageMovieServer(
+    @SerializedName("aspect_ratio") val aspectRatio: Double,
+    @SerializedName("file_path") val filePath: String?,
+    val height: Int,
+    @SerializedName("iso_639_1") val iso639: String?,
+    @SerializedName("vote_average") val voteAverage: Double?,
+    @SerializedName("vote_count") val voteCount: Int?,
+    val width: Int
+)
+
+data class PosterServer(
+    @SerializedName("aspect_ratio") val aspectRatio: Double,
+    @SerializedName("file_path") val filePath: String?,
+    val height: Int,
+    @SerializedName("iso_639_1") val iso639: String?,
+    @SerializedName("vote_average") val voteAverage: Double?,
+    @SerializedName("vote_count") val voteCount: Int?,
+    val width: Int
+)

@@ -27,3 +27,5 @@ abstract class BaseRequest<T : Any>(
 }
 
 class PopularMoviesRequest(baseUrl: String) : BaseRequest<PopularMoviesService>(baseUrl)
+
+class ImagesMovieRequest(baseUrl: String) : BaseRequest<ImagesMovieService>(baseUrl)

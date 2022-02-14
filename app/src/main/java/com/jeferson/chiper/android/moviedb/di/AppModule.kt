@@ -1,8 +1,11 @@
 package com.jeferson.chiper.android.moviedb.di
 
+import com.jeferson.chiper.android.moviedb.data.source.RemoteImagesMovieByIdDataSource
 import com.jeferson.chiper.android.moviedb.data.source.RemotePopularMoviesDataSource
 import com.jeferson.chiper.android.moviedb.framework.server.ApiConstants.API_KEY_VALUE
 import com.jeferson.chiper.android.moviedb.framework.server.ApiConstants.BASE_API_URL
+import com.jeferson.chiper.android.moviedb.framework.server.ImagesMovieByIdRetrofitDataSource
+import com.jeferson.chiper.android.moviedb.framework.server.ImagesMovieRequest
 import com.jeferson.chiper.android.moviedb.framework.server.PopularMoviesRequest
 import com.jeferson.chiper.android.moviedb.framework.server.PopularMoviesRetrofitDataSource
 import dagger.Module
@@ -35,4 +38,14 @@ class AppModule {
     fun remotePopularMoviesDataSourceProvider(
         popularMoviesRequest: PopularMoviesRequest
     ): RemotePopularMoviesDataSource = PopularMoviesRetrofitDataSource(popularMoviesRequest)
+
+    @Provides
+    fun imagesMovieByIdRequestProvider(
+        @Named("baseUrl") baseUrl: String
+    ) = ImagesMovieRequest(baseUrl)
+
+    @Provides
+    fun remoteImagesMovieByIdDataSourceProvider(
+        imagesMovieRequest: ImagesMovieRequest
+    ): RemoteImagesMovieByIdDataSource = ImagesMovieByIdRetrofitDataSource(imagesMovieRequest)
 }

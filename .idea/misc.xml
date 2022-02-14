@@ -9,8 +9,10 @@
         <entry key="app/src/main/res/drawable/ic_not_results.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/drawable/ic_tmdb.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/drawable/shape_rounded.xml" value="0.20833333333333334" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_detail_movie.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_grid_movie.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_images_movie.xml" value="0.165" />
       </map>
     </option>
   </component>
