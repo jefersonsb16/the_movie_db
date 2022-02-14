@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_broken_image.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/drawable/ic_not_results.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/drawable/ic_tmdb.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/drawable/shape_rounded.xml" value="0.20833333333333334" />

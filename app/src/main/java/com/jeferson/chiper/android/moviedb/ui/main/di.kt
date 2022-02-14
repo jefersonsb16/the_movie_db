@@ -5,19 +5,16 @@ import com.jeferson.chiper.android.moviedb.usecases.GetRemoteMoviesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(ViewModelComponent::class)
 class MainActivityModule {
 
     @Provides
+    @ViewModelScoped
     fun getPopularMoviesUseCaseProvider(
         popularMoviesRepository: PopularMoviesRepository
     ) = GetRemoteMoviesUseCase(popularMoviesRepository)
-
-    @Provides
-    fun popularMoviesViewModelProvider(
-        getPopularMoviesUseCase: GetRemoteMoviesUseCase
-    ) = PopularMoviesViewModel(getPopularMoviesUseCase)
 }
