@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:visibility="@{view_model.sizeMoviesList != 0 ? view.VISIBLE : view.INVISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
                 app:spanCount="3"

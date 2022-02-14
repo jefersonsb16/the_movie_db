@@ -6,8 +6,10 @@ import com.jeferson.chiper.android.moviedb.domain.MovieDomain
 import com.jeferson.chiper.android.moviedb.ui.common.Event
 import com.jeferson.chiper.android.moviedb.ui.common.ScopedViewModel
 import com.jeferson.chiper.android.moviedb.usecases.GetRemoteMoviesUseCase
+import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory.Companion.GENERIC_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,20 +40,39 @@ class PopularMoviesViewModel @Inject constructor(
 
         launch {
             showLoading()
-            val resultList = getPopularMoviesUseCase.invoke(currentPage)
-            _popularMovieList.addAll(resultList)
-            _sizeMoviesList.value = _popularMovieList.size
-            hideLoading()
+            try {
+                val resultList = getPopularMoviesUseCase.invoke(currentPage)
 
-            if (resultList.size < PAGE_SIZE) {
-                isLastPage = true
+                _popularMovieList.addAll(resultList)
+                _sizeMoviesList.value = _popularMovieList.size
+                hideLoading()
+
+                if (resultList.size < PAGE_SIZE) {
+                    isLastPage = true
+                }
+
+                _events.value = Event(MovieListNavigation.ShowMovieList(_popularMovieList))
+            } catch (e: Exception) {
+                hideLoading()
+                var errorCode: Int = GENERIC_ERROR
+
+                if (e is HttpException) {
+                    errorCode = e.code()
+                }
+
+                currentPage = 0
+                _popularMovieList.clear()
+                _sizeMoviesList.value = 0
+                _events.value = Event(MovieListNavigation.ShowMovieError(errorCode))
             }
-
-            _events.value = Event(MovieListNavigation.ShowMovieList(_popularMovieList))
         }
     }
 
-    fun onLoadMoreMovies(visibleItemCount: Int, firstVisibleItemPosition: Int, totalItemCount: Int) {
+    fun onLoadMoreMovies(
+        visibleItemCount: Int,
+        firstVisibleItemPosition: Int,
+        totalItemCount: Int
+    ) {
         if (isLoading.value!! || isLastPage || !isInFooter(
                 visibleItemCount,
                 firstVisibleItemPosition,

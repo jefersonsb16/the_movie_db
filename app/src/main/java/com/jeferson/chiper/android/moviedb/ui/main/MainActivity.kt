@@ -1,7 +1,6 @@
 package com.jeferson.chiper.android.moviedb.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -13,6 +12,7 @@ import com.jeferson.chiper.android.moviedb.databinding.ActivityMainBinding
 import com.jeferson.chiper.android.moviedb.domain.MovieDomain
 import com.jeferson.chiper.android.moviedb.ui.common.Event
 import com.jeferson.chiper.android.moviedb.ui.main.adapters.MovieGridRecyclerAdapter
+import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: PopularMoviesViewModel by viewModels()
     private lateinit var movieGridAdapter: MovieGridRecyclerAdapter
+    private val messageErrorFactory = MessageErrorFactory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,10 +72,9 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
         event?.getContentIfNotHandled()?.let { navigation ->
             when (navigation) {
                 is PopularMoviesViewModel.MovieListNavigation.ShowMovieError -> navigation.run {
-                    //
+                    messageErrorFactory.showSnackBar(this@MainActivity, error, binding.root)
                 }
                 is PopularMoviesViewModel.MovieListNavigation.ShowMovieList -> navigation.run {
-                    // movieGridAdapter.popularMoviesList = movieList
                     movieGridAdapter.setDataList(movieList)
                 }
                 PopularMoviesViewModel.MovieListNavigation.HideLoading -> {

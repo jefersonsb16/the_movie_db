@@ -13,4 +13,15 @@
     <string name="text_gallery">Galería</string>
     <string name="text_info_not_available">Información no disponible</string>
     <string name="not_results">No hay resultados para mostrar</string>
+
+    <!-- error's messages -->
+    <string name="text_not_allowed_error">Método no permitido</string>
+    <string name="text_network_error">¡Parece que no hay internet!</string>
+    <string name="text_generic_error">Ocurrió un error, intentelo más tarde.</string>
+    <string name="text_not_found_error">No se ha encontrado el recurso solicitado.</string>
+    <string name="text_server_error">Ha ocurrido un error interno, intentelo más tarde.</string>
+    <string name="text_unauthorized_error">El recurso solicitado requiere autenticación de usuario.</string>
+    <string name="text_bad_request_error">El servidor no pudo entender la solicitud debido a una sintaxis no válida.</string>
+    <string name="text_invalid_service">Servicio no válido: este servicio no existe.</string>
+    <string name="text_service_offline">Este servicio está temporalmente fuera de línea, inténtelo de nuevo más tarde.</string>
 </resources>
