@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.jeferson.chiper.android.moviedb.domain.MovieDomain" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMovie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/min_margin"
+        android:layout_marginVertical="@dimen/min_margin"
+        app:cardCornerRadius="@dimen/card_radius_movie"
+        app:cardElevation="@dimen/normal_elevation_card">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingBottom="@dimen/small_padding">
+
+            <ImageView
+                android:id="@+id/movieImage"
+                style="@style/MovieGridItemImage"
+                android:contentDescription="@string/movie_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/movieTitle"
+                style="@style/MovieListItemTitle"
+                android:text="@{movie.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieImage"
+                tools:text="Mortal Kombat" />
+
+            <TextView
+                android:id="@+id/movieOverview"
+                style="@style/MovieListItemOverview"
+                android:text="@{movie.overview}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+                tools:text="Un asesino en serie muere y su alma se reencarna en un muñeco de nieve, que obviamente reinicia sus matanzas." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
