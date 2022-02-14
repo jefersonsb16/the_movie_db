@@ -1,5 +1,6 @@
 package com.jeferson.chiper.android.moviedb.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,13 @@ import com.jeferson.chiper.android.moviedb.R
 import com.jeferson.chiper.android.moviedb.databinding.ActivityMainBinding
 import com.jeferson.chiper.android.moviedb.domain.MovieDomain
 import com.jeferson.chiper.android.moviedb.ui.common.Event
+import com.jeferson.chiper.android.moviedb.ui.detail_movie.DetailMovieActivity
 import com.jeferson.chiper.android.moviedb.ui.main.adapters.MovieGridRecyclerAdapter
+import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_ID
+import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_IMAGE
+import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_OVERVIEW
+import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_RELEASE_DATE
+import com.jeferson.chiper.android.moviedb.utils.Constants.MOVIE_TITLE
 import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -88,6 +95,12 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
     }
 
     override fun openMovieDetail(movie: MovieDomain) {
-        // not implemented
+        val goDetail = Intent(this@MainActivity, DetailMovieActivity::class.java)
+        goDetail.putExtra(MOVIE_ID, movie.id)
+        goDetail.putExtra(MOVIE_TITLE, movie.title)
+        goDetail.putExtra(MOVIE_RELEASE_DATE, movie.release_date)
+        goDetail.putExtra(MOVIE_IMAGE, movie.backdrop_path)
+        goDetail.putExtra(MOVIE_OVERVIEW, movie.overview)
+        startActivity(goDetail)
     }
 }
