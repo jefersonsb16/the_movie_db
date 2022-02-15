@@ -13,6 +13,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Named
 
 @Module
@@ -62,13 +63,15 @@ class DetailMovieActivityModule {
         @Named("movieImage") movieImage: String,
         @Named("movieOverview") movieOverview: String,
         @Named("movieOverview") movieReleaseDate: String,
-        getImagesMovieByIdUseCase: GetImagesMovieByIdUseCase
+        getImagesMovieByIdUseCase: GetImagesMovieByIdUseCase,
+        uiDispatcher: CoroutineDispatcher
     ) = DetailMovieViewModel(
         movieId,
         movieTitle,
         movieImage,
         movieOverview,
         movieReleaseDate,
-        getImagesMovieByIdUseCase
+        getImagesMovieByIdUseCase,
+        uiDispatcher
     )
 }
