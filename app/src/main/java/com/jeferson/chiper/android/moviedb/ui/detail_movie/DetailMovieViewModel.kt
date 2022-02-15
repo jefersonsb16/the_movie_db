@@ -9,6 +9,7 @@ import com.jeferson.chiper.android.moviedb.ui.common.ScopedViewModel
 import com.jeferson.chiper.android.moviedb.usecases.GetImagesMovieByIdUseCase
 import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -20,8 +21,9 @@ class DetailMovieViewModel @Inject constructor(
     private val movieImage: String,
     private val movieOverview: String,
     private val movieReleaseDate: String,
-    private val getImagesMovieByIdUseCase: GetImagesMovieByIdUseCase
-) : ScopedViewModel() {
+    private val getImagesMovieByIdUseCase: GetImagesMovieByIdUseCase,
+    uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
     private val _imagesMovieList: MutableList<ImageMovieDomain> = mutableListOf()
 
@@ -62,7 +64,7 @@ class DetailMovieViewModel @Inject constructor(
         onGetImagesMovieById(movie.id)
     }
 
-    private fun onGetImagesMovieById(id: Int) {
+    fun onGetImagesMovieById(id: Int) {
         launch {
             showLoading()
             try {

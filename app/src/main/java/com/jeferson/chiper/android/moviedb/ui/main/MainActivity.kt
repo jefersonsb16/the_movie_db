@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
             addOnScrollListener(onScrollListener)
         }
         mainViewModel.events.observe(this, Observer(this::updateUI))
-        mainViewModel.onGetPopularMovies()
 
         // add swipe refresh event
         binding.swipeRefreshMovieList.setOnRefreshListener {
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity(), OnItemMovieClickListener {
     }
 
     private fun updateUI(event: Event<PopularMoviesViewModel.MovieListNavigation>?) {
-        event?.getContentIfNotHandled()?.let { navigation ->
+        event?.peekContent()?.let { navigation ->
             when (navigation) {
                 is PopularMoviesViewModel.MovieListNavigation.ShowMovieError -> navigation.run {
                     messageErrorFactory.showSnackBar(this@MainActivity, error, binding.root)
