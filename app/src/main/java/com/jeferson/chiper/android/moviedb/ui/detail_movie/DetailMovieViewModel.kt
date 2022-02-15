@@ -64,7 +64,7 @@ class DetailMovieViewModel @Inject constructor(
         onGetImagesMovieById(movie.id)
     }
 
-    private fun onGetImagesMovieById(id: Int) {
+    fun onGetImagesMovieById(id: Int) {
         launch {
             showLoading()
             try {
