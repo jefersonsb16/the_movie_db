@@ -27,3 +27,8 @@ El proyecto se basa en Clean Architecture usando el patrón de presentación MVV
 ![Getting Started](./images/clean_comunication.png)
 
 La capa de presentación utiliza la capa de casos de uso, que a su vez va a utilizar el dominio para acceder a la capa de datos que es donde encontraremos los repositories de acceso a datos que hayamos definido, en este punto la comunicación se da através de abstracciones o interfaces las cuales se implementan en una capa superior llamada framework la cual tendrá acceso a los datos solicitados, esta comunicación mediante abstracciones es lo que en SOLID conocemos como inversión de dependencias. Luego, los datos obtenidos van de vuelta por la estructura de capas hasta llegar a la capa de presentación, que actualiza la interfaz de usuario.
+
+### Funcionamiento de la app ###
+
+| ![Getting Started](./images/screen1.jpeg) | ![Getting Started](./images/screen2.jpeg) |
+| ------------- | ------------- |
