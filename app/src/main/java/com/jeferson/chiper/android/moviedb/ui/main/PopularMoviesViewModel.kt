@@ -8,9 +8,9 @@ import com.jeferson.chiper.android.moviedb.ui.common.ScopedViewModel
 import com.jeferson.chiper.android.moviedb.usecases.GetLocalMoviesUseCase
 import com.jeferson.chiper.android.moviedb.usecases.GetRemoteMoviesUseCase
 import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_API
-import com.jeferson.chiper.android.moviedb.utils.Constants.TYPE_LOCAL
 import com.jeferson.chiper.android.moviedb.utils.MessageErrorFactory.Companion.GENERIC_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -18,8 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetRemoteMoviesUseCase,
-    private val getLocalMoviesUseCase: GetLocalMoviesUseCase
-) : ScopedViewModel() {
+    private val getLocalMoviesUseCase: GetLocalMoviesUseCase,
+    uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
     private var typeGetData = TYPE_API
 
@@ -39,6 +40,7 @@ class PopularMoviesViewModel @Inject constructor(
 
     init {
         initScope()
+        onGetPopularMovies()
     }
 
     fun onGetPopularMovies() {
@@ -84,19 +86,13 @@ class PopularMoviesViewModel @Inject constructor(
     }
 
     fun onGetAllLocalMovies() {
-        if (typeGetData != TYPE_LOCAL) {
-            return
-        }
-
         launch {
             showLoading()
             val resultList = getLocalMoviesUseCase.invoke()
             _sizeMoviesList.value = resultList.size
             hideLoading()
 
-            if (typeGetData == TYPE_LOCAL) {
-                _events.value = Event(MovieListNavigation.ShowMovieList(resultList))
-            }
+            _events.value = Event(MovieListNavigation.ShowMovieList(resultList))
         }
     }
 
