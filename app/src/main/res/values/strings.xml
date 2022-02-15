@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">MovieDB</string>
+
+    <string name="ic_tmdb">Icono TMDB</string>
+    <string name="movie_image">Imagen de la película</string>
+    <string name="message_not_movie">No se encontró una película para mostrar.</string>
+    <string name="title_detail">Detalle</string>
+    <string name="text_overview">Información General</string>
+    <string name="text_release_date">Fecha de lanzamiento</string>
+    <string name="error_get_movies">Error obteniendo películas</string>
+    <string name="error_get_images_movies">Error obteniendo las imágenes de la película</string>
+    <string name="desc_image_movie">Imagen de la película</string>
+    <string name="text_gallery">Galería</string>
+    <string name="text_info_not_available">Información no disponible</string>
+    <string name="not_results">No hay resultados para mostrar</string>
+    <string name="text_retry">Reintentar</string>
+    <string name="action_most_popular">Más popular</string>
+    <string name="action_local">Local</string>
+
+    <!-- error's messages -->
+    <string name="text_not_allowed_error">Método no permitido</string>
+    <string name="text_network_error">¡Parece que no hay internet!</string>
+    <string name="text_generic_error">Ocurrió un error, intentelo más tarde.</string>
+    <string name="text_not_found_error">No se ha encontrado el recurso solicitado.</string>
+    <string name="text_server_error">Ha ocurrido un error interno, intentelo más tarde.</string>
+    <string name="text_unauthorized_error">El recurso solicitado requiere autenticación de usuario.</string>
+    <string name="text_bad_request_error">El servidor no pudo entender la solicitud debido a una sintaxis no válida.</string>
+    <string name="text_invalid_service">Servicio no válido: este servicio no existe.</string>
+    <string name="text_service_offline">Este servicio está temporalmente fuera de línea, inténtelo de nuevo más tarde.</string>
 </resources>
